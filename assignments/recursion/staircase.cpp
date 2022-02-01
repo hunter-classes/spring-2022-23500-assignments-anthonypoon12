@@ -11,5 +11,5 @@ int stepPerms(int n) {
         return n;
     if (n==3)
         return 4;
-    return stepPerms(n-1) + stepPerms(n-2) + stepPerms(n-3);
+    return (stepPerms(n-1) + stepPerms(n-2) + stepPerms(n-3)) % int(std::pow(10,10) + 7);
 }
