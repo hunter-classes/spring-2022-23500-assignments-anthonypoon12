@@ -15,7 +15,7 @@ int stepPerms(int n) {
 }
 int main(){
     std::cout<<"input : output \n";
-    for (int x = 1; x < 33; x++){
+    for (int x : {1,2,3,4,5,10,20,15}){
         std::cout << x << " : " << stepPerms(x) << "\n";
     }
     return 0;
