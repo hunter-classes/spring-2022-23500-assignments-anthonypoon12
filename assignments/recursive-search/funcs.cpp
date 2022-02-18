@@ -25,7 +25,6 @@ void plant(std::string *grid, int row, int col){
 void solve (std::string *grid, int row, int col){
 	plant(grid,row,col);
 }
-//3,3 is the center of the 5x5 grid
 int main(){
 	std::string grid[20];
 	int lines = getgrid("grid.dat",grid);
