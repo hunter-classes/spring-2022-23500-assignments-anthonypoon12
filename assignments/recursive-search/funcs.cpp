@@ -22,14 +22,44 @@ void plant(std::string *grid, int row, int col){
 	else
 		std::cout<<"You can not plant a knight in that location\n";
 }
-void solve (std::string *grid, int row, int col){
-	plant(grid,row,col);
+void solve (std::string *grid, int row, int col, bool &done, int num, int lines){
+	// plant(grid,row,col);
+	if (grid[row][col]==notvisited){
+		if (!done)
+			solve(grid, row-2, col-1,done,num+1, lines);
+		if (!done)
+			solve(grid, row-2, col+1,done,num+1, lines);
+		if (!done)
+			solve(grid, row-1, col-2,done,num+1, lines);
+		if (!done)
+			solve(grid, row-1, col+2,done,num+1, lines);
+		if (!done)
+			solve(grid, row+2, col+1,done,num+1, lines);
+		if (!done)
+			solve(grid, row+2, col-1,done,num+1, lines);
+		if (!done)
+			solve(grid, row+1, col-2,done,num+1, lines);
+		if (!done)
+			solve(grid, row+1, col+2,done,num+1, lines);
+	}
+	int count = 0;
+	for (int i = 0; i < lines; i++){
+		for (int j = 0; j < lines;j++){
+			if (grid[i][j]==notvisited)
+				count++;
+		}
+	}
+	if (count==0)
+		done=true;
+	if (done)
+		grid[row][col]=num;
 }
 int main(){
+	bool done = false;
 	std::string grid[20];
 	int lines = getgrid("grid.dat",grid);
 	printgrid(grid,lines);
-	solve(grid,3,3);
+	solve(grid,3,3, done, 0, lines);
 	printgrid(grid,lines);
 	return 0;
 }
