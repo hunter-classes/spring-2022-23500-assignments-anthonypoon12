@@ -42,6 +42,9 @@ void solve (std::string *grid, int row, int col, bool &done, int num, int lines)
 		if (!done)
 			solve(grid, row+1, col+2,done,num+1, lines);
 	}
+	else{
+		return;
+	}
 	int count = 0;
 	for (int i = 0; i < lines; i++){
 		for (int j = 0; j < lines;j++){
@@ -53,6 +56,15 @@ void solve (std::string *grid, int row, int col, bool &done, int num, int lines)
 		done=true;
 	if (done)
 		grid[row][col]=num;
+	else{
+		for (int i = 0; i < lines; i++){
+			for (int j = 0; j < lines;j++){
+				if (grid[i][j]>num)
+					//get rid of all numbers above a certain part
+			}
+		}
+
+	}
 }
 int main(){
 	bool done = false;
