@@ -25,9 +25,9 @@ void printgrid(int **grid,int lines){
 	std::cout << "[0;0H\n";
 	for (int i = 0; i < lines; i++){
 		for (int j = 0; j < lines; j++){
-			if (grid[i][j]==-1)
-				std::cout<<std::setw(3)<<".";
-			else
+			if (grid[i][j]!=-1)
+			// 	std::cout<<std::setw(3)<<".";
+			// else
 				std::cout<<std::setw(3)<<grid[i][j];
 		}
 		std::cout<<"\n";
@@ -41,26 +41,18 @@ void plant(int **grid, int row, int col){
 }
 void solve (int **grid, int row, int col, bool &done, int num, int lines){
 	// plant(grid,row,col);
-	usleep(800);
-	printgrid(grid, lines);
+	// usleep(800);
+	// printgrid(grid, lines);
 	if (grid[row][col]==notvisited){
 		grid[row][col] = num+1;
-		if (!done)
-			solve(grid, row-2, col-1,done,num+1, lines);
-		if (!done)
-			solve(grid, row-2, col+1,done,num+1, lines);
-		if (!done)
-			solve(grid, row-1, col-2,done,num+1, lines);
-		if (!done)
-			solve(grid, row-1, col+2,done,num+1, lines);
-		if (!done)
-			solve(grid, row+2, col+1,done,num+1, lines);
-		if (!done)
-			solve(grid, row+2, col-1,done,num+1, lines);
-		if (!done)
-			solve(grid, row+1, col-2,done,num+1, lines);
-		if (!done)
-			solve(grid, row+1, col+2,done,num+1, lines);
+		if (!done) solve(grid, row-2, col-1,done,num+1, lines);
+		if (!done) solve(grid, row-2, col+1,done,num+1, lines);
+		if (!done) solve(grid, row-1, col-2,done,num+1, lines);
+		if (!done) solve(grid, row-1, col+2,done,num+1, lines);
+		if (!done) solve(grid, row+2, col+1,done,num+1, lines);
+		if (!done) solve(grid, row+2, col-1,done,num+1, lines);
+		if (!done) solve(grid, row+1, col-2,done,num+1, lines);
+		if (!done) solve(grid, row+1, col+2,done,num+1, lines);
 	}
 	else{
 		return;
@@ -90,10 +82,10 @@ int main(){
         grid[i] = new int[20];
     }
 	int lines = getgrid("grid.dat",grid);
-	printgrid(grid,lines);
-	// plant(grid,3,3);
-	printgrid(grid,lines);
-	solve(grid,3,3, done, 0, lines);
 	// printgrid(grid,lines);
+	// plant(grid,3,3);
+	// printgrid(grid,lines);
+	solve(grid,3,3, done, 0, lines);
+	printgrid(grid,lines);
 	return 0;
 }
