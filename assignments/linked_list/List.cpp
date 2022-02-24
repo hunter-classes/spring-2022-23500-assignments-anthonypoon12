@@ -30,7 +30,9 @@ std::string List::toString(){
 Node* List::locate(int index){
     int place = 0;
     Node *walker = head;
-    if (index<=0) //if index is negative, return head
+    if (index<0)
+        return nullptr;
+    if (index==0)
         return head;
     while(walker!=nullptr){
         walker = walker->getNext();
@@ -41,7 +43,7 @@ Node* List::locate(int index){
     return nullptr;//if index is greater than or equal to list size, return null pointer
 }
 void List::remove(int index){
-    if (index<=0){
+    if (index==0){
         Node* newhead = head->getNext();
         delete head;
         head = newhead;
