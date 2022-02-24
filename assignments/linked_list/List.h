@@ -5,7 +5,9 @@ class List{
         Node *head;
     public:
         List();
+        ~List();
         void insert(std::string data);
         std::string toString();
-        
+        Node locate(int index);
+        void remove(int index);
 };
