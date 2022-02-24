@@ -3,6 +3,10 @@
 List::List(){
     head = nullptr;
 }
+List::~List(){
+    while(head!=nullptr)
+        remove(0);
+}
 void List::insert(std::string data){
     //create a new node
     Node *new_node = new Node(data);

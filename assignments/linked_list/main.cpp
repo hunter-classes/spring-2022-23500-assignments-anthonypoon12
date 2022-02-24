@@ -27,5 +27,7 @@ int main(int argc, char *argv[]){
     std::cout<<l1->toString()<<"\n";
     l1->remove(-1);
     std::cout<<l1->toString()<<"\n";
+    delete l1;
+    std::cout<<"l1 after being deleted is: "<<l1->toString()<<"\nWhat is left of l1 has been printed.\n";
     return 0;
 }
