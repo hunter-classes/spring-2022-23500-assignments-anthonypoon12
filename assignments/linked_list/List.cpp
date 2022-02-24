@@ -23,3 +23,16 @@ std::string List::toString(){
     s=s+"nullptr";
     return s;
 }
+Node* List::locate(int index){
+    int place = 0;
+    Node *walker = head;
+    if (index<=0) //if index is negative, return head
+        return head;
+    while(walker!=nullptr){
+        walker = walker->getNext();
+        place++;
+        if (place==index)
+            return walker;
+    }
+    return walker;//if index is greater than or equal to list size, return last node
+}
