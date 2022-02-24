@@ -34,5 +34,5 @@ Node* List::locate(int index){
         if (place==index)
             return walker;
     }
-    return walker;//if index is greater than or equal to list size, return last node
+    return nullptr;//if index is greater than or equal to list size, return null pointer
 }
