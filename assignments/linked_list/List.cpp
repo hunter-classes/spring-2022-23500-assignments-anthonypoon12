@@ -36,3 +36,17 @@ Node* List::locate(int index){
     }
     return nullptr;//if index is greater than or equal to list size, return null pointer
 }
+void List::remove(int index){
+    if (index<=0){
+        Node* newhead = head->getNext();
+        delete head;
+        head = newhead;
+    }
+    else{
+        Node* target = locate(index);
+        if (target!=nullptr){
+            locate(index-1)->setNext(target->getNext());
+            delete target;
+        }
+    }
+}

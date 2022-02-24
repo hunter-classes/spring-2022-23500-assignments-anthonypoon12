@@ -8,6 +8,6 @@ class List{
         ~List();
         void insert(std::string data);
         std::string toString();
-        Node locate(int index);
+        Node* locate(int index);
         void remove(int index);
 };
