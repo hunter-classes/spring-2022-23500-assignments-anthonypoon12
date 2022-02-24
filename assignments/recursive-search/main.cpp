@@ -7,7 +7,7 @@ int main(){
         grid[i] = new int[20];
     }
 	int lines = getgrid("grid.dat",grid);
-	solve(grid,3,3, done, 0, lines);
+	solve(grid,6,2, done, 0, lines);
 	printgrid(grid,lines);
 	return 0;
 }

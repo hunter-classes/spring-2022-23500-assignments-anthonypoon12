@@ -2,6 +2,7 @@
 #include <fstream>
 #include <unistd.h>
 #include <iomanip>
+#include "funcs.h"
 
 char empty = -1;
 char notvisited = 0;
@@ -22,7 +23,7 @@ int getgrid(std::string filename, int **grid){
 	return i;
 }
 void printgrid(int **grid,int lines){
-	std::cout << "[0;0H\n";
+	// std::cout << "[0;0H\n";
 	for (int i = 0; i < lines; i++){
 		for (int j = 0; j < lines; j++){
 			if (grid[i][j]!=-1)
