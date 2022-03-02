@@ -31,16 +31,14 @@ Node* List::locate(int index){
     int place = 0;
     Node *walker = head;
     if (index<0)
-        return nullptr;
-    if (index==0)
-        return head;
+        throw std::out_of_range("Out of range");
     while(walker!=nullptr){
-        walker = walker->getNext();
-        place++;
         if (place==index)
             return walker;
+        place++;
+        walker = walker->getNext();
     }
-    return nullptr;//if index is greater than or equal to list size, return null pointer
+    throw std::out_of_range("Out of range");
 }
 void List::remove(int index){
     if (index==0){
@@ -49,9 +47,12 @@ void List::remove(int index){
         head = newhead;
     }
     else{
-        Node* target = locate(index);
-        if (target!=nullptr){
-            locate(index-1)->setNext(target->getNext());
+        Node* trailer = locate(index-1);
+        Node* target = trailer->getNext();
+        if (target==nullptr)
+            throw std::out_of_range("Out of range");
+        else{
+            trailer->setNext(target->getNext());
             delete target;
         }
     }
