@@ -1,14 +1,14 @@
 #pragma once
 class Node{
     private:
-        std::string data;
+        int data;
         Node *next;
     public:
         Node();
-        Node(std::string data);
-        Node(std::string data, Node *next);
-        void setData(std::string data);
+        Node(int data);
+        Node(int data, Node *next);
+        void setData(int data);
         void setNext(Node *next);
-        std::string getData();
+        int getData();
         Node *getNext();
 };

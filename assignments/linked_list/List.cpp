@@ -7,7 +7,7 @@ List::~List(){
     while(head!=nullptr)
         remove(0);
 }
-void List::insert(std::string data){
+void List::insert(int data){
     //create a new node
     Node *new_node = new Node(data);
     //insert the new node
@@ -21,7 +21,7 @@ std::string List::toString(){
     Node *walker = head;
     std::string s = "";
     while (walker != nullptr){
-        s = s + walker -> getData() + "-->";
+        s = s + std::to_string(walker->getData()) + "-->";
         walker = walker->getNext();
     }
     s=s+"nullptr";
@@ -41,12 +41,12 @@ Node* List::locate(int index){
     throw std::out_of_range("Out of range");
 }
 void List::remove(int index){
-    if (index==0){
+    if (index==0 && head!=nullptr){
         Node* newhead = head->getNext();
         delete head;
         head = newhead;
     }
-    else{
+    else if (head!=nullptr){
         Node* trailer = locate(index-1);
         Node* target = trailer->getNext();
         if (target==nullptr)

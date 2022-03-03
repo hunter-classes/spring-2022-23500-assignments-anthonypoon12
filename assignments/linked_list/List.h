@@ -6,7 +6,7 @@ class List{
     public:
         List();
         ~List();
-        void insert(std::string data);
+        void insert(int data);
         std::string toString();
         Node* locate(int index);
         void remove(int index);
