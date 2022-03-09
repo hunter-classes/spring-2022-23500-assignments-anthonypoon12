@@ -89,6 +89,22 @@ std::vector<int> merge(std::vector<int> left,
   
 }
 
+std::vector<int> msort (std::vector<int> v){
+    std::vector<int> left;
+    std::vector<int> right;
+    for (int i = 0; i < v.size(); i++){
+        if (i%2==0)
+            left.push_back(v[i]);
+        else
+            right.push_back(v[i]);
+    }
+    if (left.size()>0)
+        left = msort(left);
+    if (right.size()>0)
+        right = msort(right);
+    return merge(left,right);
+}
+
 int main()
 {
   int size=20;
@@ -112,5 +128,7 @@ int main()
   print_vector(right);
   std::vector<int> m = merge(left,right);
   print_vector(m);
+  std::vector<int> ms = msort({1,2,4,5,7,542,3,46,8,3,132467,48,5,372});
+  print_vector(ms);
   return 0;
 }
