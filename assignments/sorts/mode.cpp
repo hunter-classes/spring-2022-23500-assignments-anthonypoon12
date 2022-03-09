@@ -1,42 +1,41 @@
 #include <iostream>
 #include <vector>
-#include "sorts.h"
+void print_vector(std::vector<int> a){
+  for (auto i : a){
+    std::cout << i << ", ";
+  }
+  std::cout << "\n";
+}
 int count(std::vector<int> v, int value){
-    std::vector<int> sorted = msort(v);
-    int result = 0;
-    int i = 0;
-    while(i<v.size() && sorted[i]<=value){
-        if (sorted[i]==value)
-            result++;
-        i++;
+    int output=0;
+    for (auto i: v){
+        if (i==value)
+            output++;
     }
-    return result;
+    return output;
 }
 int largest(std::vector<int> v){
-    return msort(v).back();
+    int max = v[0];
+    for (auto i: v){
+        if (i>max)
+            max=i;
+    }
+    return max;
 }
 int mode(std::vector<int> v){
-    std::vector <int> sorted = msort(v);
+    std::vector<int> values;
+    std::vector<int> counts;
+    for (int i: v){
+        if (count(values,i)==0)
+            values.push_back(i);
+    }
+    int max = 0;
     int output = 0;
-    if (v.size()>0){
-        int current = sorted[0];
-        int count=0;
-        int largest = 0;
-        for (int i = 0; i<v.size();i++){
-            if (current==sorted[i]){
-                count++;
-            }
-            else{
-                current = sorted[i];
-                if (largest < count){
-                    largest = count;
-                    output = sorted[i-1];
-                    count=0;
-                }
-            }
-        }
-        if (largest < count){
-            output = sorted.back();
+    for (int i: values){
+        int placeholder = count(v,i);
+        if (placeholder>max){
+            max = placeholder;
+            output = i;
         }
     }
     return output;
@@ -59,8 +58,8 @@ int main(){
     std::cout<<"Number of 1s in Test 3: "<<count(test3,1)<<"\n";
     std::cout<<"Number of 2s in Test 3: "<<count(test3,2)<<"\n";
     std::cout<<"largest number in Test1 is: "<<largest(test)<<"\n";
-    std::cout<<"largest number in Test2 is: "<<largest(test)<<"\n";
-    std::cout<<"largest number in Test3 is: "<<largest(test)<<"\n";
+    std::cout<<"largest number in Test2 is: "<<largest(test2)<<"\n";
+    std::cout<<"largest number in Test3 is: "<<largest(test3)<<"\n";
     std::cout<<"Mode of Test1 is: "<<mode(test)<<"\n";
     std::cout<<"Mode of Test2 is: "<<mode(test2)<<"\n";
     std::cout<<"Mode of Test3 is: "<<mode(test3)<<"\n";

@@ -105,30 +105,30 @@ std::vector<int> msort (std::vector<int> v){
     return merge(left,right);
 }
 
-// int main()
-// {
-//   int size=20;
-//   int max_val=100;
+int main()
+{
+  int size=20;
+  int max_val=100;
 
-//   srand(time(nullptr));
-//   std::vector<int> a(size);
-//   int i;
-//   for (i=0;i<size; i++){
-//     a[i] = rand()%max_val;
-//   }
-//   /*
-//     print_vector(a);
-//   std::cout << "\n";
-//   a = ssort(a);
-//   print_vector(a);
-//   */
-//   std::vector<int> left = {1,2,5,6,10,15};
-//   std::vector<int> right = {3,7,8,12,16,19,20};
-//   print_vector(left);
-//   print_vector(right);
-//   std::vector<int> m = merge(left,right);
-//   print_vector(m);
-//   std::vector<int> ms = {1,2,4,5,7,542,3,46,8,3,132467,48,5,372};
-//   print_vector(msort(ms));
-//   return 0;
-// }
+  srand(time(nullptr));
+  std::vector<int> a(size);
+  int i;
+  for (i=0;i<size; i++){
+    a[i] = rand()%max_val;
+  }
+  /*
+    print_vector(a);
+  std::cout << "\n";
+  a = ssort(a);
+  print_vector(a);
+  */
+  std::vector<int> left = {1,2,5,6,10,15};
+  std::vector<int> right = {3,7,8,12,16,19,20};
+  print_vector(left);
+  print_vector(right);
+  std::vector<int> m = merge(left,right);
+  print_vector(m);
+  std::vector<int> ms = {1,2,4,5,7,542,3,46,8,3,132467,48,5,372};
+  print_vector(msort(ms));
+  return 0;
+}
