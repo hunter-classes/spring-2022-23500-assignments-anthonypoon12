@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 void print_vector(std::vector<int> a){
   for (auto i : a){
     std::cout << i << ", ";
@@ -63,5 +65,10 @@ int main(){
     std::cout<<"Mode of Test1 is: "<<mode(test)<<"\n";
     std::cout<<"Mode of Test2 is: "<<mode(test2)<<"\n";
     std::cout<<"Mode of Test3 is: "<<mode(test3)<<"\n";
+    std::srand(std::time(nullptr));
+    std::vector<int> randoms;
+    for (int i = 0; i < 80000; i++)
+        randoms.push_back(std::rand()%10000);
+    std::cout<<"Mode of random vector is: "<<mode(randoms)<<"\n";
     return 0;
 }
