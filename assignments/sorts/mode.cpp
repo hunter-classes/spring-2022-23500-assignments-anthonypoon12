@@ -42,6 +42,18 @@ int mode(std::vector<int> v){
     }
     return output;
 }
+int mode2(std::vector<int> v){
+    std::vector<int> counts(largest(v)+1);
+    for(int i: v){
+        counts[i]++;
+    }
+    int maxindex = 0;
+    for (int i = 0; i < counts.size();i++){
+        if (counts[maxindex]<counts[i])
+            maxindex=i;
+    }
+    return maxindex;
+}
 int main(){
     std::vector <int> test = {1,245,4,31,35,73,5,6,8,1,1,1,15,15,31};
     std::cout<<"Test Vector 1: "<<"\n";
@@ -65,10 +77,14 @@ int main(){
     std::cout<<"Mode of Test1 is: "<<mode(test)<<"\n";
     std::cout<<"Mode of Test2 is: "<<mode(test2)<<"\n";
     std::cout<<"Mode of Test3 is: "<<mode(test3)<<"\n";
+    std::cout<<"Mode of Test1 is: "<<mode2(test)<<"\n";
+    std::cout<<"Mode of Test2 is: "<<mode2(test2)<<"\n";
+    std::cout<<"Mode of Test3 is: "<<mode2(test3)<<"\n";
     std::srand(std::time(nullptr));
     std::vector<int> randoms;
-    for (int i = 0; i < 80000; i++)
-        randoms.push_back(std::rand()%10000);
+    for (int i = 0; i < 8000; i++)
+        randoms.push_back(std::rand()%1000);
     std::cout<<"Mode of random vector is: "<<mode(randoms)<<"\n";
+    std::cout<<"Mode of random vector is: "<<mode2(randoms)<<"\n";
     return 0;
 }
