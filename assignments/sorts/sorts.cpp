@@ -88,7 +88,16 @@ std::vector<int> merge(std::vector<int> left,
   
   
 }
-
+void printvectorparts(std::vector<int> list, int left, int right){
+  std::string output = "";
+  if (left>=0 && right<list.size()){
+    for (int i = left; i <= right; i++){
+      std::cout<<list[i];
+      std::cout<<", ";
+    }
+    std::cout<<output<<"\n";
+  }
+}
 std::vector<int> msort (std::vector<int> v){
   if (v.size()<=1)
     return v;
@@ -111,6 +120,7 @@ void swap(std::vector<int> &list, int left, int right){
   list[right] = tmp;
 }
 void qsort2(std::vector<int> &list, int low, int high){
+  std::cout<< "Low:" << low << " High:" << high <<"\n";
   int left = low;
   int right = high;
   int pivot;
@@ -132,9 +142,10 @@ void qsort2(std::vector<int> &list, int low, int high){
     pivot = c;
   else if (lc >= la && la < lb)
     pivot = c;
+  printvectorparts(list,low,high);
+  std::cout<<"pivot: "<<pivot<<"\n";
   std::cout<<list[pivot]<<"\n";
   while (left <= pivot){
-    std::cout<<"\n";
     if (left < pivot){
       if (list[left]<=list[pivot]){
         left++;
@@ -147,9 +158,9 @@ void qsort2(std::vector<int> &list, int low, int high){
           pivot = left;
         }
         swap(list, left, right);
-    std::cout<<left<<" "<< pivot << " " << right<<" : ";
-    print_vector(list);
-    std::cout<<"\n";
+        std::cout<<left<<" "<< pivot << " " << right<<" : ";
+        printvectorparts(list,left,right);
+        std::cout<<"\n";
       }
     }
     else if (left == pivot){
@@ -159,18 +170,22 @@ void qsort2(std::vector<int> &list, int low, int high){
         if (right!=pivot){
           pivot = right;
           swap(list, left, right);
-    std::cout<<left<<" "<< pivot << " " << right<<" : ";
-    print_vector(list);
-    std::cout<<"\n";
+          std::cout<<left<<" "<< pivot << " " << right<<" : ";
+          printvectorparts(list,left,right);
+          std::cout<<"\n";
         }
         else{
           left++;
           right--;
+          printvectorparts(list,low,high);
+          std::cout <<left << " and "<< right << " and " << pivot <<"\n";
         }
     }
   }
-  qsort2(list, low, right);
-  qsort2(list, left, high);
+  if (low<high){
+    qsort2(list, low, pivot-1);
+    qsort2(list, pivot+1, high);
+  }
 }
 
 int main()
