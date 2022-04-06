@@ -113,17 +113,57 @@ std::vector<int> msort (std::vector<int> v){
     right = msort(right);
     return merge(left,right);
 }
+std::vector <int> qsort(std::vector<int> list){
+    
+    // base case
+    if (list.size() <=1){
+        return list;
+    }
 
+    // select a pivot value.
+    // for now, just pick list[0]
+    int pivot = list[0];
+    // make 2 new vectors
+    std::vector<int> lower, higher;
+
+    // copy all the values < pivot value to lower
+    
+    // copy all the values >= pivot value to higher
+
+    for (int i = 1; i < list.size(); i++){
+        if (list[i]<pivot){
+            lower.push_back(list[i]);
+        } else{
+            higher.push_back(list[i]);
+        }
+    }
+    lower = qsort(lower);
+    higher = qsort(higher);
+
+    // copy everything back into list
+    int i;
+    for (i = 0; i < lower.size(); i++){
+        list[i] = lower[i];
+    }
+    list[i] = pivot;
+    i++;
+    int j;
+    for (j=0; j < higher.size();j++){
+        list[i] = higher[j];
+        i++;
+    }
+    // return the sorted list
+    return list;
+}
 void swap(std::vector<int> &list, int left, int right){
   int tmp = list[left];
   list[left] = list[right];
   list[right] = tmp;
 }
-void qsort2(std::vector<int> &list, int low, int high){
-  std::cout<< "Low:" << low << " High:" << high <<"\n";
-  int left = low;
-  int right = high;
-  int pivot;
+int middlenum(std::vector<int> &list, int low, int high){
+  if (high<=low)
+    return low;
+  int pivot = low;
   int a = low;
   int b = (high-low)/2 + low;
   int c = high;
@@ -142,74 +182,192 @@ void qsort2(std::vector<int> &list, int low, int high){
     pivot = c;
   else if (lc >= la && la < lb)
     pivot = c;
-  printvectorparts(list,low,high);
-  std::cout<<"pivot: "<<pivot<<"\n";
-  std::cout<<list[pivot]<<"\n";
-  while (left <= pivot){
-    if (left < pivot){
-      if (list[left]<=list[pivot]){
+  return pivot;
+}
+std::vector <int> betterqsort(std::vector<int> list){
+    
+    // base case
+    if (list.size() <=1){
+        return list;
+    }
+
+    // select a pivot value.
+    // for now, just pick list[0]
+    int pivot = list[middlenum(list, 0, list.size()-1)];
+    // make 2 new vectors
+    std::vector<int> lower, higher;
+
+    // copy all the values < pivot value to lower
+    
+    // copy all the values >= pivot value to higher
+
+    for (int i = 1; i < list.size(); i++){
+        if (list[i]<pivot){
+            lower.push_back(list[i]);
+        } else{
+            higher.push_back(list[i]);
+        }
+    }
+    lower = qsort(lower);
+    higher = qsort(higher);
+
+    // copy everything back into list
+    int i;
+    for (i = 0; i < lower.size(); i++){
+        list[i] = lower[i];
+    }
+    list[i] = pivot;
+    i++;
+    int j;
+    for (j=0; j < higher.size();j++){
+        list[i] = higher[j];
+        i++;
+    }
+    // return the sorted list
+    return list;
+}
+void moveleft(std::vector<int> &list, int &left, int pivot){
+  while (left<pivot && list[left]<=list[pivot]){
         left++;
-      }
-      else{
-        while (right > pivot && list[right]>list[pivot]){
-          right--;
-        }
-        if (right==pivot){
-          pivot = left;
-        }
-        swap(list, left, right);
-        std::cout<<left<<" "<< pivot << " " << right<<" : ";
-        printvectorparts(list,left,right);
-        std::cout<<"\n";
-      }
-    }
-    else if (left == pivot){
-        while (right > pivot && list[right]>list[pivot]){
-          right--;
-        }
-        if (right!=pivot){
-          pivot = right;
-          swap(list, left, right);
-          std::cout<<left<<" "<< pivot << " " << right<<" : ";
-          printvectorparts(list,left,right);
-          std::cout<<"\n";
-        }
-        else{
-          left++;
-          right--;
-          printvectorparts(list,low,high);
-          std::cout <<left << " and "<< right << " and " << pivot <<"\n";
-        }
-    }
-  }
-  if (low<high){
-    qsort2(list, low, pivot-1);
-    qsort2(list, pivot+1, high);
   }
 }
-
-int main()
-{
-  int size=20;
-  int max_val=100;
-
-  srand(time(nullptr));
+void moveright(std::vector<int> &list, int &right, int pivot){
+  while (right>pivot && list[right]>list[pivot]){
+        right--;
+  }
+}
+void qsort2(std::vector<int> &list, int low, int high){
+  int left = low;
+  int right = high;
+  int pivot = low;
+  if (high!=low && low<high){
+    while (left <= pivot){
+      moveleft(list,left,pivot);
+      moveright(list,right,pivot);
+      if (right==pivot)
+        pivot = left;
+      else if (left==pivot)
+        pivot = right;
+      swap(list, left, right);
+      if (left==right){
+        left++;
+        right--;
+      }
+    }
+    if (low<=pivot && high>=pivot && low!=high){
+      qsort2(list, low, pivot-1);
+      qsort2(list, pivot+1, high);
+    }
+  }
+}
+void betterqsort2(std::vector<int> &list, int low, int high){
+  int left = low;
+  int right = high;
+  int pivot = middlenum(list,low,high);
+  if (high!=low && low<high){
+    while (left <= pivot){
+      moveleft(list,left,pivot);
+      moveright(list,right,pivot);
+      if (right==pivot)
+        pivot = left;
+      else if (left==pivot)
+        pivot = right;
+      swap(list, left, right);
+      if (left==right){
+        left++;
+        right--;
+      }
+    }
+    if (low<=pivot && high>=pivot && low!=high){
+      betterqsort2(list, low, pivot-1);
+      betterqsort2(list, pivot+1, high);
+    }
+  }
+}
+std::vector<int> createvector(int size, int max_val){
   std::vector<int> a(size);
-  int i;
-  for (i=0;i<size; i++){
-    a[i] = rand()%max_val;
-  }
-  print_vector(a);
-  std::cout << "\n";
-  qsort2(a, 0, a.size()-1);
-  print_vector(a);
-  // std::vector<int> left = {1,2,5,6,10,15};
-  // std::vector<int> right = {3,7,8,12,16,19,20};
-  // print_vector(left);
-  // print_vector(right);
-  // std::vector<int> m = merge(left,right);
-  // print_vector(m);
-  // std::vector<int> ms = {1,2,4,5,7,542,3,46,8,3,132467,48,5,372};
-  // print_vector(msort(ms));
-  return 0;
+    int i;
+    for (i=0;i<size; i++){
+      a[i] = rand()%max_val;
+    }
+    return a;
 }
+void tests(std::vector<int> testvector, char s){
+  struct timeval tp;
+  gettimeofday(&tp,NULL);
+  long start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+  std::vector<int> a = testvector;
+  if (s=='m'){
+    std::cout<<"merge sort on unsorted list for size: "<<testvector.size()<<"\n";
+    a = msort(testvector);
+  }
+  else if (s=='r'){
+    std::cout<<"bad quick sort on unsorted list for size: "<<testvector.size()<<"\n";
+    a = qsort(testvector);
+  }
+  else if (s=='o'){
+    std::cout<<"good quick sort on unsorted list for size: "<<testvector.size()<<"\n";
+    a = betterqsort(testvector);
+  }
+  else if(s=='q'){
+    std::cout<<"bad in place quick sort on unsorted list for size: "<<testvector.size()<<"\n";
+    qsort2(a,0,a.size()-1);
+  }
+  else if(s=='a'){
+    std::cout<<"good in place quick sort on unsorted list for size: "<<testvector.size()<<"\n";
+    betterqsort2(a,0,a.size()-1);
+  }
+  gettimeofday(&tp,NULL);
+  long current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
+  long elapsed = current_time - start_time;
+  // print_vector(a);
+  std::cout << "Time: " << elapsed << "\n";
+  gettimeofday(&tp,NULL);
+  start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+  if (s=='m'){
+    std::cout<<"merge sort on sorted list for size: "<<a.size()<<"\n";
+    a = msort(a);
+  }
+  else if (s=='r'){
+    std::cout<<"bad quick sort on sorted list for size: "<<a.size()<<"\n";
+    a = qsort(a);
+  }
+  else if (s=='o'){
+    std::cout<<"good quick sort on sorted list for size: "<<a.size()<<"\n";
+    a = betterqsort(a);
+  }
+  else if(s=='q'){
+    std::cout<<"bad in place quick sort on sorted list for size: "<<a.size()<<"\n";
+    qsort2(a,0,a.size()-1);
+  }
+  else if(s=='a'){
+    std::cout<<"good in place quick sort on sorted list on unsorted list for size: "<<a.size()<<"\n";
+    betterqsort2(a,0,a.size()-1);
+  }
+  gettimeofday(&tp,NULL);
+  current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
+  elapsed = current_time - start_time;
+  // print_vector(a);
+  std::cout << "Time: " << elapsed << "\n";
+}
+int main(int argc, char *argv[])
+  {
+    int max_val = 100; 
+    char algorithm = 'm' ; 
+    bool print = false;
+    srand(time(nullptr));
+    std::vector<int> a;
+    for(auto size : {10, 50, 100, 500, 1000, 10000, 25000}){
+      std::cout<<"Size: " << size <<"\n";
+      a = createvector(size,max_val);
+      tests(a, 'm');
+      tests(a, 'r');
+      tests(a, 'o');
+      tests(a, 'q');
+      tests(a, 'a');
+      std::cout<<"---------------------\n";
+    }
+    return 0;
+  }
