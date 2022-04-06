@@ -105,6 +105,74 @@ std::vector<int> msort (std::vector<int> v){
     return merge(left,right);
 }
 
+void swap(std::vector<int> &list, int left, int right){
+  int tmp = list[left];
+  list[left] = list[right];
+  list[right] = tmp;
+}
+void qsort2(std::vector<int> &list, int low, int high){
+  int left = low;
+  int right = high;
+  int pivot;
+  int a = low;
+  int b = (high-low)/2 + low;
+  int c = high;
+  int la = list[a];
+  int lb = list[b];
+  int lc = list[c];
+  if (la >= lb && la < lc)
+    pivot = a;
+  else if (la >= lc && la < lb)
+    pivot = a;
+  else if (lb >= la && lb < lc)
+    pivot = b;
+  else if (lb >= lc && lb < la)
+    pivot = b;
+  else if (lc >= lb && lc < la)
+    pivot = c;
+  else if (lc >= la && la < lb)
+    pivot = c;
+  std::cout<<list[pivot]<<"\n";
+  while (left <= pivot){
+    std::cout<<"\n";
+    if (left < pivot){
+      if (list[left]<=list[pivot]){
+        left++;
+      }
+      else{
+        while (right > pivot && list[right]>list[pivot]){
+          right--;
+        }
+        if (right==pivot){
+          pivot = left;
+        }
+        swap(list, left, right);
+    std::cout<<left<<" "<< pivot << " " << right<<" : ";
+    print_vector(list);
+    std::cout<<"\n";
+      }
+    }
+    else if (left == pivot){
+        while (right > pivot && list[right]>list[pivot]){
+          right--;
+        }
+        if (right!=pivot){
+          pivot = right;
+          swap(list, left, right);
+    std::cout<<left<<" "<< pivot << " " << right<<" : ";
+    print_vector(list);
+    std::cout<<"\n";
+        }
+        else{
+          left++;
+          right--;
+        }
+    }
+  }
+  qsort2(list, low, right);
+  qsort2(list, left, high);
+}
+
 int main()
 {
   int size=20;
@@ -116,19 +184,17 @@ int main()
   for (i=0;i<size; i++){
     a[i] = rand()%max_val;
   }
-  /*
-    print_vector(a);
-  std::cout << "\n";
-  a = ssort(a);
   print_vector(a);
-  */
-  std::vector<int> left = {1,2,5,6,10,15};
-  std::vector<int> right = {3,7,8,12,16,19,20};
-  print_vector(left);
-  print_vector(right);
-  std::vector<int> m = merge(left,right);
-  print_vector(m);
-  std::vector<int> ms = {1,2,4,5,7,542,3,46,8,3,132467,48,5,372};
-  print_vector(msort(ms));
+  std::cout << "\n";
+  qsort2(a, 0, a.size()-1);
+  print_vector(a);
+  // std::vector<int> left = {1,2,5,6,10,15};
+  // std::vector<int> right = {3,7,8,12,16,19,20};
+  // print_vector(left);
+  // print_vector(right);
+  // std::vector<int> m = merge(left,right);
+  // print_vector(m);
+  // std::vector<int> ms = {1,2,4,5,7,542,3,46,8,3,132467,48,5,372};
+  // print_vector(msort(ms));
   return 0;
 }
