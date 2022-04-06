@@ -1,0 +1,12 @@
+The O time of merge sort is O(n(log n)) while the speed of quick sort is on average O(log n).
+The speed of merge sort is guarenteed to be n(log n).
+The speed of quicksort, on the other hand, is dependent on the placement of the pivot and the preexisting order of the list.
+The worst case scenario of the quick sort is O(n^2) while the best case scenario is O(n/2)
+When quicksort is used for an already sorted list on the first element, the speed will be considerably slower than if it is a completely randomized list and the value of the pivot is closer to the median of the list.
+Using an in place implementation of quick sort is faster than using an implementation that creates multiple vectors.
+After testing different implementations of the sorting methods, I found that mergesort and all implementations of quicksort can be used with little difference in speed for sizes between 0 and 10000.
+Around size 10000, the quicksorts that are not in place begin getting noticeably slower, especially when pivoting off of the first element on already sorted lists.
+At sizes around 25000 elements or more, quicksorts that are not in place perform exceptionally poorly when pivoting off of the first element on already sorted lists.
+Merge sort and quicksort that is in place are consistently very fast, slowing down as the sets grow larger.
+However, the in place quicksort that pivots off of the first element in sorted lists will grow slower sooner than the other versions of quicksort and merge sort.
+In conclusion, I believe that it will does matter whether one uses  mergesort, in place quicksort, and quicksort that creates vectors when the dataset is small. I believe that when the user wants a consistent speed for their sorting method, especially on very large datasets, they should use mergesort. 
