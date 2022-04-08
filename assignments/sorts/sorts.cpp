@@ -193,7 +193,8 @@ std::vector <int> betterqsort(std::vector<int> list){
 
     // select a pivot value.
     // for now, just pick list[0]
-    int pivot = list[middlenum(list, 0, list.size()-1)];
+    int pivotind = middlenum(list, 0, list.size()-1);
+    int pivot = list[pivotind];
     // make 2 new vectors
     std::vector<int> lower, higher;
 
@@ -201,12 +202,14 @@ std::vector <int> betterqsort(std::vector<int> list){
     
     // copy all the values >= pivot value to higher
 
-    for (int i = 1; i < list.size(); i++){
+    for (int i = 0; i < list.size(); i++){
+      if (i!=pivotind){
         if (list[i]<pivot){
             lower.push_back(list[i]);
         } else{
             higher.push_back(list[i]);
         }
+      }
     }
     lower = qsort(lower);
     higher = qsort(higher);
@@ -300,22 +303,50 @@ void tests(std::vector<int> testvector, char s){
   if (s=='m'){
     std::cout<<"merge sort on unsorted list for size: "<<testvector.size()<<"\n";
     a = msort(testvector);
+    if (a.size()<100){
+      print_vector(testvector);
+      print_vector(a);
+    }
   }
   else if (s=='r'){
     std::cout<<"bad quick sort on unsorted list for size: "<<testvector.size()<<"\n";
     a = qsort(testvector);
+    if (a.size()<100){
+      print_vector(testvector);
+      print_vector(a);
+    }
   }
   else if (s=='o'){
     std::cout<<"good quick sort on unsorted list for size: "<<testvector.size()<<"\n";
     a = betterqsort(testvector);
+    if (a.size()<100){
+      print_vector(testvector);
+      print_vector(a);
+    }
   }
   else if(s=='q'){
     std::cout<<"bad in place quick sort on unsorted list for size: "<<testvector.size()<<"\n";
+    if (a.size()<100){
+      print_vector(testvector);
+      print_vector(a);
+    }
     qsort2(a,0,a.size()-1);
+    if (a.size()<100){
+      print_vector(testvector);
+      print_vector(a);
+    }
   }
   else if(s=='a'){
     std::cout<<"good in place quick sort on unsorted list for size: "<<testvector.size()<<"\n";
+    if (a.size()<100){
+      print_vector(testvector);
+      print_vector(a);
+    }
     betterqsort2(a,0,a.size()-1);
+    if (a.size()<100){
+      print_vector(testvector);
+      print_vector(a);
+    }
   }
   gettimeofday(&tp,NULL);
   long current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
@@ -327,23 +358,53 @@ void tests(std::vector<int> testvector, char s){
   start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
   if (s=='m'){
     std::cout<<"merge sort on sorted list for size: "<<a.size()<<"\n";
+    if (a.size()<100){
+      print_vector(a);
+    }
     a = msort(a);
+    if (a.size()<100){
+      print_vector(a);
+    }
   }
   else if (s=='r'){
     std::cout<<"bad quick sort on sorted list for size: "<<a.size()<<"\n";
+    if (a.size()<100){
+      print_vector(a);
+    }
     a = qsort(a);
+    if (a.size()<100){
+      print_vector(a);
+    }
   }
   else if (s=='o'){
     std::cout<<"good quick sort on sorted list for size: "<<a.size()<<"\n";
+    if (a.size()<100){
+      print_vector(a);
+    }
     a = betterqsort(a);
+    if (a.size()<100){
+      print_vector(a);
+    }
   }
   else if(s=='q'){
     std::cout<<"bad in place quick sort on sorted list for size: "<<a.size()<<"\n";
+    if (a.size()<100){
+      print_vector(a);
+    }
     qsort2(a,0,a.size()-1);
+    if (a.size()<100){
+      print_vector(a);
+    }
   }
   else if(s=='a'){
     std::cout<<"good in place quick sort on sorted list on unsorted list for size: "<<a.size()<<"\n";
+    if (a.size()<100){
+      print_vector(a);
+    }
     betterqsort2(a,0,a.size()-1);
+    if (a.size()<100){
+      print_vector(a);
+    }
   }
   gettimeofday(&tp,NULL);
   current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
