@@ -3,8 +3,6 @@
 class stack{
     private:
         List list;
-        Node* head; // first val input
-        Node* tail; // last
     public:
         stack();
         ~stack();
