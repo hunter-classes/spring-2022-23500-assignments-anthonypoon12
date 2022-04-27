@@ -32,6 +32,9 @@ int main(){
 
     BSTree *t = new BSTree();
     t-> setup();
+    BSTree *t2 = new BSTree();
+    t2-> setup(n);
     std::cout << t->get_debug_string()<<"\n";
+    std::cout << t2->get_debug_string()<<"\n";
     return 0;
 }
