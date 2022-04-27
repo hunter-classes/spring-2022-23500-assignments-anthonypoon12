@@ -15,12 +15,16 @@ void stack::push(int val){
     size++;
 }
 int stack::pop(){
+    if(is_empty())
+        throw STACK_ERR_EMPTY;
     int popped = list.locate(0)->getData();
     list.remove(0);
     size--;
     return popped;
 }
 int stack::top(){
+    if (is_empty())
+        throw STACK_ERR_EMPTY;
     return list.locate(0)->getData();
 }
 bool stack::is_empty(){

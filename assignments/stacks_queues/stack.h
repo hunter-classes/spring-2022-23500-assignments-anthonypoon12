@@ -1,5 +1,7 @@
 #pragma once
 #include "List.h"
+#define STACK_ERR_EMPTY 1
+#define STACK_ERR_OTHER 2
 class stack{
     private:
         List list;
