@@ -1,9 +1,10 @@
 #include <iostream>
 #include "stack.h"
+#include "Queue.h"
 
 int main(){
     std::cout<<std::boolalpha;
-    std::cout<<"Creating a new stack...\n";
+    std::cout<<"Testing Stacks\nCreating a new stack...\n";
     stack *stacky = new stack();
     std::cout<<"This stack is empty: "<<stacky->is_empty()<<"\n";
     std::cout<<"The top of stacky is: ";
@@ -51,6 +52,46 @@ int main(){
     }catch(int e){
         std::cout<<"empty\n";
     }
+    std::cout<<"deleting stack\n";
     delete stacky;
+    std::cout<<"\n\n\nTesting Queues\n";
+    std::cout<<"Creating Queue...\n";
+    Queue *queue = new Queue();
+    std::cout<<"This queue is empty: "<<queue->is_empty()<<"\n";
+    std::cout<<"This queue is full: "<<queue->is_full()<<"\n";
+    std::cout<<"Sequeuing value: ";
+    try{
+        std::cout<<queue->sequeue();
+    }catch(int e){
+        std::cout<<"failed\n";
+    }
+    std::cout<<"Enqueuing number 1..\n";
+    queue->enqueue(1);
+    std::cout<<"This queue is empty: "<<queue->is_empty()<<"\n";
+    std::cout<<"This queue is full: "<<queue->is_full()<<"\n";
+    std::cout<<"The front of the queue is: "<<queue->front()<<"\n";
+    std::cout<<"Sequeuing once.. value is: "<< queue->sequeue()<<"\n";
+    std::cout<<"This queue is empty: "<<queue->is_empty()<<"\n";
+    std::cout<<"This queue is full: "<<queue->is_full()<<"\n";
+    std::cout<<"Enqueuing numbers 10, 5, 3, 2, and 4..\n";
+    for (auto x: {10,5,3,2,4}){
+        queue->enqueue(x);
+    }
+    std::cout<<"This queue is empty: "<<queue->is_empty()<<"\n";
+    std::cout<<"This queue is full: "<<queue->is_full()<<"\n";
+    std::cout<<"The front of the queue is: "<<queue->front()<<"\n";
+    std::cout<<"Enqueuing number 100: ";
+    try{
+        queue->enqueue(100);
+        std::cout<<"success!\n";
+    }catch(int e){
+        std::cout<<"failed\n";
+    }
+    std::cout<<"Sequeuing three times.. values are: ";
+    std::cout<<queue->sequeue()<<", ";
+    std::cout<<queue->sequeue()<<", ";
+    std::cout<<queue->sequeue()<<"\n";
+    std::cout<<"Deleting Queue\n";
+    delete queue;
     return 0;
 }
