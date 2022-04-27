@@ -3,6 +3,7 @@
 class stack{
     private:
         List list;
+        int size;
     public:
         stack();
         ~stack();
