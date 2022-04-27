@@ -2,7 +2,7 @@
 #include "Node.h"
 class Queue{
     private:
-        Node list[5];
+        int list[5];
     public:
     Queue();
     ~Queue();
