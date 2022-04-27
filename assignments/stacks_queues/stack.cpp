@@ -15,10 +15,10 @@ void stack::push(int val){
     size++;
 }
 int stack::pop(){
-    Node* popped = list.locate(0);
+    int popped = list.locate(0)->getData();
     list.remove(0);
     size--;
-    return popped->getData();
+    return popped;
 }
 int stack::top(){
     return list.locate(0)->getData();
