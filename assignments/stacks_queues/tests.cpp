@@ -18,5 +18,17 @@ TEST_CASE("Testing Push, Push, Top"){
     CHECK(stack1->pop()==1);
     CHECK(stack1->pop()==0);
     CHECK(stack1->is_empty());
+    stack1->push(1);
+    stack1->push(2);
+    stack1->push(3);
+    stack1->push(4);
+    stack1->push(5);
+    stack1->push(6);
+    stack1->push(7);
+    stack1->pop();
+    stack1->pop();
+    stack1->pop();
+    stack1->pop();
+    CHECK(stack1->top()==3);
     delete stack1;
 }
