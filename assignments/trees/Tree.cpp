@@ -17,20 +17,24 @@ int Tree::rsearch(int value, Node *p){
         return rsearch(value,p->getRight());
 }
 void Tree::insert(int value){
-    insert_helper(value,&root);
-}
-void Tree::insert_helper(int value, Node **r){
-    if (r==nullptr){
+    if (root==nullptr){
         Node *newnode = new Node(value);
-        *r = newnode;
+        root = newnode;
+    }
+    else
+        insert_helper(value,root);
+}
+void Tree::insert_helper(int value, Node *r){
+    Node *newnode = new Node(value);
+    if (r->getData()>=value){
+        if (r->getLeft()==nullptr)
+            r->setLeft(newnode);
+        else
+            insert_helper(value,r->getLeft());
     }else{
-        Node *innerval = *r;
-        Node *ri = innerval->getRight();
-        Node *li = innerval->getLeft();
-        if (innerval->getData()>=value){
-            insert_helper(value,&li);
-        }else{
-            insert_helper(value,&ri);
-        }
+        if (r->getRight()==nullptr)
+            r->setRight(newnode);
+        else
+            insert_helper(value,r->getRight());
     }
 }
