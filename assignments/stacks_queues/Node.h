@@ -2,13 +2,14 @@
 class Node{
     private:
         int data;
-        Node *next;
+        Node *left;
+        Node *right;
     public:
         Node();
         Node(int data);
-        Node(int data, Node *next);
         void setData(int data);
-        void setNext(Node *next);
+        void setLeft(Node *next);
+        void setRight(Node *next);
         int getData();
         Node *getNext();
 };
