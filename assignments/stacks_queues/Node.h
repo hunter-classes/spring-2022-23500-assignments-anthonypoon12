@@ -1,15 +1,13 @@
-#pragma once
 class Node{
     private:
         int data;
-        Node *left;
-        Node *right;
+        Node *next;
     public:
         Node();
         Node(int data);
+        Node(int data, Node *next);
         void setData(int data);
-        void setLeft(Node *next);
-        void setRight(Node *next);
+        void setNext(Node *next);
         int getData();
         Node *getNext();
 };
