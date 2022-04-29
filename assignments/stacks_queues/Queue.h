@@ -1,5 +1,4 @@
 #pragma once
-#include "Node.h"
 #define QUEUE_ERR_FULL 1
 #define QUEUE_ERR_EMPTY 2
 class Queue{
