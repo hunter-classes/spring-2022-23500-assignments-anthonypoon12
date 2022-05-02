@@ -1,5 +1,5 @@
 main: main.o Tree.o Node.o
-	g++ -o main.o Tree.o Node.o
+	g++ -o main main.o Tree.o Node.o
 tests: tests.o Tree.o Node.o
 	g++ -o tests tests.o Tree.o Node.o
 main.o: main.cpp Tree.h
