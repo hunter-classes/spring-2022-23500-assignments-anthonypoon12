@@ -4,11 +4,13 @@ Tree::Tree(){
     root = nullptr;
 }
 int Tree::rsearch(int value){
+    if (root==nullptr)
+        throw TREE_ERR_EMPTY;
     return rsearch(value, root);
 }
 int Tree::rsearch(int value, Node *p){
     if (p==nullptr)
-        throw TREE_ERR_EMPTY;
+        throw TREE_ERR_NO_VALUE;
     if (p->getData()==value)
         return p->getData();
     else if(p->getData()>=value)

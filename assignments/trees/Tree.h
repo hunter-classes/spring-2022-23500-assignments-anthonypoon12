@@ -1,6 +1,7 @@
 #pragma once
 #include "Node.h"
 #define TREE_ERR_EMPTY 1
+#define TREE_ERR_NO_VALUE 2
 class Tree{
     private:
         Node *root;
