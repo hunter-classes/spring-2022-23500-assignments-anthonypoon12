@@ -43,3 +43,6 @@ TEST_CASE("Deleting"){
     CHECK(tree->rsearch(11)==11);
     CHECK(tree->rsearch(32)==32);
 }
+TEST_CASE("Count Leaves"){
+    CHECK(tree->count_leaves()==3);
+}

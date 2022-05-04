@@ -1,7 +1,9 @@
 #pragma once
+#include <iostream>
 #include "Node.h"
 #define TREE_ERR_EMPTY 1
 #define TREE_ERR_NO_VALUE 2
+
 class Tree{
     private:
         Node *root;
@@ -13,6 +15,7 @@ class Tree{
         void insert_helper(int value, Node *r);
         void remove(int value);
         int count_leaves();
+        int count_leaves(Node *n);
         int height();
         int sum_at_level(int level);
         std::string pretty_printer();

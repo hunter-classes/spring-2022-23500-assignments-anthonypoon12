@@ -1,5 +1,4 @@
 #include "Tree.h"
-#include <iostream>
 Tree::Tree(){
     root = nullptr;
 }
@@ -122,7 +121,16 @@ void Tree::remove(int value){
     }
 }
 int Tree::count_leaves(){
-    return 0;
+    return count_leaves(root);
+}
+int Tree::count_leaves(Node *n){
+    int count = 0;
+    if (n!=nullptr && n->getLeft()==nullptr && n->getRight()==nullptr){
+        return 1;
+    }
+    else if (n==nullptr)
+        return 0;
+    return count_leaves(n->getLeft()) + count_leaves(n->getRight());
 }
 int Tree::height(){
     return 0;
@@ -133,6 +141,6 @@ int Tree::sum_at_level(int level){
 std::string Tree::pretty_printer(){
     return "";
 }
-bool Tree::cousins(){
+bool Tree::cousins(Node *one, Node *two){
     return true;
 }
