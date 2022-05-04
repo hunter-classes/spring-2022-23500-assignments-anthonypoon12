@@ -12,5 +12,9 @@ class Tree{
         void insert(int value);     
         void insert_helper(int value, Node *r);
         void remove(int value);
-
+        int count_leaves();
+        int height();
+        int sum_at_level(int level);
+        std::string pretty_printer();
+        bool cousins(Node *one, Node *two);
 };

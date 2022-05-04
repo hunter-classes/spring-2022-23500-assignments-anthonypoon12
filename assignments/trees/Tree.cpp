@@ -1,5 +1,5 @@
 #include "Tree.h"
-
+#include <iostream>
 Tree::Tree(){
     root = nullptr;
 }
@@ -120,4 +120,19 @@ void Tree::remove(int value){
             travtrail->setRight(nullptr);
         delete traveler;
     }
+}
+int Tree::count_leaves(){
+    return 0;
+}
+int Tree::height(){
+    return 0;
+}
+int Tree::sum_at_level(int level){
+    return 0;
+}
+std::string Tree::pretty_printer(){
+    return "";
+}
+bool Tree::cousins(){
+    return true;
 }
