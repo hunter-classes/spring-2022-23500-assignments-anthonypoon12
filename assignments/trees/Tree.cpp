@@ -40,3 +40,84 @@ void Tree::insert_helper(int value, Node *r){
             insert_helper(value,r->getRight());
     }
 }
+void Tree::remove(int value){
+    Node *target;
+    Node *targetl;
+    Node *targetr;
+    Node *trailer = nullptr;
+    if (root->getData()==value){
+        target=root;
+        targetl=target->getLeft();
+        targetr=target->getRight();
+    }
+    else{
+        Node *focus = root;
+        Node *l = focus->getLeft();
+        Node *r = focus->getRight();
+        while(focus->getData()!=value && (l!=nullptr || r!=nullptr)){
+            if (value<=focus->getData()){
+                trailer=focus;
+                focus=l;
+                l=focus->getLeft();
+                r=focus->getRight();
+            }
+            else{
+                trailer=focus;
+                focus=r;
+                l=focus->getLeft();
+                r=focus->getRight();
+            }
+        }
+        if (focus->getData()!=value)
+            throw TREE_ERR_NO_VALUE;
+        target = focus;
+        targetl = target->getLeft();
+        targetr = target->getRight();
+    }
+    int children = 0;
+    if (targetl!=nullptr)
+        children++;
+    if (targetr!=nullptr)
+        children++;
+    if (children<=1){
+        Node *child;
+        if (targetl!=nullptr)
+            child=targetl;
+        else
+            child=targetr;
+        if (trailer!=nullptr){
+            if (trailer->getLeft()==target)
+                trailer->setLeft(child);
+            else
+                trailer->setRight(child);
+        }
+        else
+            root = child;
+        delete target;
+    }
+    else{
+        Node *traveler = target->getRight();
+        Node *travl = traveler->getLeft();
+        Node *travr = traveler->getRight();
+        Node* travtrail = target;
+        while (travl!=nullptr || travr!=nullptr){
+            if (travl!=nullptr){
+                travtrail=traveler;
+                traveler=travl;
+                travl=traveler->getLeft();
+                travr=traveler->getRight();
+            }else{
+                travtrail=traveler;
+                traveler=travr;
+                travl=traveler->getLeft();
+                travr=traveler->getRight();
+            }
+        }
+        target->setData(traveler->getData());
+        if (travtrail->getLeft()==traveler)
+            travtrail->setLeft(nullptr);
+        else
+            travtrail->setRight(nullptr);
+        delete traveler;
+    }
+}

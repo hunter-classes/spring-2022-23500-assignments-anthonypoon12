@@ -1,5 +1,7 @@
 * Project 6 Trees
 
+* Final Due Date: TBD
+
 * Due: See individual parts 
 
 
@@ -38,4 +40,27 @@
    
 
 
-* Part 2 - TBD
+* Part 2 - Delete Due Monday 5/9 before class.
+- Write the delete routine using the algorithm we defined in class 
+- Here are two references but don't look at the code (unless you
+  really need to, first try, then ask for help on Zulip and then if
+  you use the code on these sites, make sure to cite it):
+  - http://www.algolist.net/Data_structures/Binary_search_tree/Removal
+  - https://helloacm.com/how-to-delete-a-node-from-a-binary-search-tree/
+* Part 3 - Due 5/16 before class.
+write at least 3 of these routines.
+
+A couple of people had low grades for the previous assignment due to
+them forgetting to push things. For those people, if you complete all
+5 of these and message me, I will also regrade previous lab if your
+only mistake was forgetting to push a file or an upper lower case
+issue (you know if this applies to you since we've spoken).
+
+- count leaves
+- height of a tree (a tree with just the root can be height 0 or 1,
+  whichever you prefer)
+- sum at given level level
+- tree pretty printer (this is a challenge, print out the tree using
+  tabs to make it look nice
+- cousins - true if two nodes at same level
+
