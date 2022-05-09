@@ -21,5 +21,26 @@ int main(){
             std::cout<<"Not found\n";
         }
     }
+    std::cout<<"Removing number 2: ";
+    try{
+        tree->remove(2);
+        std::cout<<"Sucess!\n";
+    }catch(int e){
+        std::cout<<"Failed\n";
+    }
+    std::cout<<"Removing number 1: ";
+    try{
+        tree->remove(1);
+        std::cout<<"Sucess!\n";
+    }catch(int e){
+        std::cout<<"Failed\n";
+    }
+    std::cout<<"Removing number 4: ";
+    try{
+        tree->remove(4);
+        std::cout<<"Sucess!\n";
+    }catch(int e){
+        std::cout<<"Failed\n";
+    }
     return 0;
 }
