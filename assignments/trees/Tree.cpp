@@ -40,6 +40,7 @@ void Tree::insert_helper(int value, Node *r){
     }
 }
 void Tree::remove(int value){
+    rsearch(value);
     Node *target;
     Node *targetl;
     Node *targetr;
