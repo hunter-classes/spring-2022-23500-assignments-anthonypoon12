@@ -42,5 +42,19 @@ int main(){
     }catch(int e){
         std::cout<<"Failed\n";
     }
+    std::cout<<"Removing number 6: ";
+    try{
+        tree->remove(6);
+        std::cout<<"Sucess!\n";
+    }catch(int e){
+        std::cout<<"Failed\n";
+    }
+    std::cout<<"Removing number 8: ";
+    try{
+        tree->remove(8);
+        std::cout<<"Sucess!\n";
+    }catch(int e){
+        std::cout<<"Failed\n";
+    }
     return 0;
 }

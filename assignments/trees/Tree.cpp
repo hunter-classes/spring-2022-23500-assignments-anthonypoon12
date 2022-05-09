@@ -40,7 +40,7 @@ void Tree::insert_helper(int value, Node *r){
     }
 }
 void Tree::remove(int value){
-    rsearch(value);
+    // rsearch(value);
     Node *target;
     Node *targetl;
     Node *targetr;
@@ -54,21 +54,33 @@ void Tree::remove(int value){
         Node *focus = root;
         Node *l = focus->getLeft();
         Node *r = focus->getRight();
-        while(focus->getData()!=value && (l!=nullptr || r!=nullptr)){
+        while(focus!=nullptr && focus->getData()!=value && (l!=nullptr || r!=nullptr)){
             if (value<=focus->getData()){
                 trailer=focus;
                 focus=l;
-                l=focus->getLeft();
-                r=focus->getRight();
+                if (focus==nullptr){
+                    l=nullptr;
+                    r=nullptr;
+                }
+                else{
+                    l=focus->getLeft();
+                    r=focus->getRight();
+                }
             }
             else{
                 trailer=focus;
                 focus=r;
-                l=focus->getLeft();
-                r=focus->getRight();
+                if (focus==nullptr){
+                    l=nullptr;
+                    r=nullptr;
+                }
+                else{
+                    l=focus->getLeft();
+                    r=focus->getRight();
+                }
             }
         }
-        if (focus->getData()!=value)
+        if (focus==nullptr || focus->getData()!=value)
             throw TREE_ERR_NO_VALUE;
         target = focus;
         targetl = target->getLeft();
