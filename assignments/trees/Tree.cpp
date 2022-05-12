@@ -159,8 +159,16 @@ int Tree::height(Node* n){
         return l+1;
     return r+1;
 }
-int Tree::sum_at_level(int level){
-    return 0;
+int Tree::sum_at_level(int level){//root is level 1
+    sum_at_level(level, root, 1);
+}
+int Tree::sum_at_level(int level, Node *n, int current){
+    if (current<level){
+        return sum_at_level(level, n->getLeft(), current+1) + sum_at_level(level, n->getRight(), current+1);
+    }
+    else{
+        return n->getData();
+    }
 }
 std::string Tree::pretty_printer(){
     return "";

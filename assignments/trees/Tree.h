@@ -19,6 +19,8 @@ class Tree{
         int height();
         int height(Node *n);
         int sum_at_level(int level);
+        int sum_at_level(int level, Node *n, int current);
+
         std::string pretty_printer();
         bool cousins(Node *one, Node *two);
 };
