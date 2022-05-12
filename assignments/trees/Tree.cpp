@@ -174,5 +174,29 @@ std::string Tree::pretty_printer(){
     return "";
 }
 bool Tree::cousins(Node *one, Node *two){
-    return true;
+    if (level(one)==level(two))
+        return true;
+    return false;
+}
+int Tree::level(Node *value){
+    return level(root, value, 1);
+}
+int Tree::level(Node *p, Node *value, int l){
+    if (p==nullptr)
+        throw TREE_ERR_NO_VALUE;
+    if (p==value)
+        return l;
+    else if(p->getData()>=value->getData())
+        return level(p->getLeft(),value,l+1);
+    else
+        return level(p->getRight(),value,l+1);
+
+}
+void Tree::insert(int value){
+    if (root==nullptr){
+        Node *newnode = new Node(value);
+        root = newnode;
+    }
+    else
+        insert_helper(value,root);
 }

@@ -22,5 +22,7 @@ class Tree{
         int sum_at_level(int level, Node *n, int current);
 
         std::string pretty_printer();
-        bool cousins(Node *one, Node *two);
+        bool cousins(Node *one, Node *two); 
+        int level(Node *n);
+        int level(Node *n, Node *value, int l);
 };
