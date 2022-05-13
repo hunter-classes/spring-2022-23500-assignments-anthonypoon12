@@ -146,7 +146,7 @@ int Tree::count_leaves(Node *n){
     return count_leaves(n->getLeft()) + count_leaves(n->getRight());
 }
 int Tree::height(){
-    height(root);
+    return height(root);
 }
 int Tree::height(Node* n){
     int l=0;
@@ -160,7 +160,7 @@ int Tree::height(Node* n){
     return r+1;
 }
 int Tree::sum_at_level(int level){//root is level 1
-    sum_at_level(level, root, 1);
+    return sum_at_level(level, root, 1);
 }
 int Tree::sum_at_level(int level, Node *n, int current){
     if (current<level){
@@ -170,8 +170,25 @@ int Tree::sum_at_level(int level, Node *n, int current){
         return n->getData();
     }
 }
-std::string Tree::pretty_printer(){
-    return "";
+void Tree::pretty_printer(){
+    std::cout<<pretty_printer(root,0, false);
+}
+std::string Tree::pretty_printer(Node *n, int tabs, bool l){
+    std::string output="";
+    for (int i = 0; i < tabs; i++){
+        output+="|\t";
+    }
+    if (tabs!=0)
+        if (l)
+            output+="Left: ";
+        else
+            output+="Right: ";
+    output += std::to_string(n->getData()) + "\n";
+    if (n->getLeft()!=nullptr)
+        output+= pretty_printer(n->getLeft(), tabs+1, true);
+    if (n->getRight()!=nullptr)
+        output+= pretty_printer(n->getRight(), tabs+1, false);
+    return output;
 }
 bool Tree::cousins(Node *one, Node *two){
     if (level(one)==level(two))
@@ -191,12 +208,4 @@ int Tree::level(Node *p, Node *value, int l){
     else
         return level(p->getRight(),value,l+1);
 
-}
-void Tree::insert(int value){
-    if (root==nullptr){
-        Node *newnode = new Node(value);
-        root = newnode;
-    }
-    else
-        insert_helper(value,root);
 }

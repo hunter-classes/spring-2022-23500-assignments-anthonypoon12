@@ -56,5 +56,6 @@ int main(){
     }catch(int e){
         std::cout<<"Failed\n";
     }
+    tree->pretty_printer();
     return 0;
 }
