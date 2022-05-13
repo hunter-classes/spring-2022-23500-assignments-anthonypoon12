@@ -50,8 +50,46 @@ TEST_CASE("Count Leaves"){
     CHECK(tree->count_leaves()==3);
     CHECK(treewithnoroot->count_leaves()==0);
     CHECK(treewithonenode->count_leaves()==1);
+    tree->remove(-2);
+    CHECK(tree->count_leaves()==2);
+    tree->insert(-15);
+    tree->insert(-1);
+    tree->insert(-20);
+    tree->insert(-21);
+    tree->insert(-19);
+    tree->insert(-3);
+    CHECK(tree->count_leaves()==5);
 }
 TEST_CASE("heightoftree"){
     CHECK(treewithnoroot->height()==0);
     CHECK(treewithonenode->height()==1);
+    CHECK(tree->height()==7);
+    tree->insert(-18);
+    CHECK(tree->height()==8);
+    tree->remove(-18);
+    tree->remove(-21);
+    tree->remove(-3);
+    tree->remove(-15);
+    CHECK(tree->height()==7);
+}
+TEST_CASE("sumatlevel"){
+    CHECK_THROWS(treewithnoroot->sum_at_level(1));
+    CHECK(treewithonenode->sum_at_level(1)==10);
+    CHECK_THROWS(treewithonenode->sum_at_level(0));
+    CHECK_THROWS(treewithonenode->sum_at_level(2));
+    CHECK(tree->sum_at_level(1)==5);
+    CHECK(tree->sum_at_level(2)==10);
+    CHECK(tree->sum_at_level(4)==(-50+11));
+    tree->insert(33);
+    CHECK(tree->sum_at_level(4)==(-50+11+33));
+    tree->remove(10);
+    CHECK(tree->sum_at_level(4)==(-50));
+}
+TEST_CASE("cousins"){
+    CHECK_THROWS(treewithnoroot->cousins(1,2));
+    CHECK(treewithonenode->cousins(10,10));
+    CHECK(!tree->cousins(5,0));
+    CHECK(tree->cousins(-100,11));
+    CHECK(tree->cousins(-100,33));
+    CHECK(tree->cousins(11,33));
 }
