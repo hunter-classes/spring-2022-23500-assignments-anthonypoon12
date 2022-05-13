@@ -43,6 +43,15 @@ TEST_CASE("Deleting"){
     CHECK(tree->rsearch(11)==11);
     CHECK(tree->rsearch(32)==32);
 }
+Tree *treewithnoroot = new Tree();
+Tree *treewithonenode = new Tree();
 TEST_CASE("Count Leaves"){
+    treewithonenode->insert(10);
     CHECK(tree->count_leaves()==3);
+    CHECK(treewithnoroot->count_leaves()==0);
+    CHECK(treewithonenode->count_leaves()==1);
+}
+TEST_CASE("heightoftree"){
+    CHECK(treewithnoroot->height()==0);
+    CHECK(treewithonenode->height()==1);
 }
