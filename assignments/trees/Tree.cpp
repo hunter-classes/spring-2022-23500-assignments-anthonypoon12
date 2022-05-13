@@ -179,7 +179,8 @@ int Tree::sum_at_level(int level, Node *n, int current){
     }
 }
 void Tree::pretty_printer(){
-    std::cout<<pretty_printer(root,0, false);
+    if (root!=nullptr)
+        std::cout<<pretty_printer(root,0, false);
 }
 std::string Tree::pretty_printer(Node *n, int tabs, bool l){
     std::string output="";
