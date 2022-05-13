@@ -7,7 +7,7 @@ List::~List(){
     while(head!=nullptr)
         remove(0);
 }
-void List::insert(int data){
+void List::insert(Person *data){
     //create a new node
     Node *new_node = new Node(data);
     //insert the new node
@@ -21,7 +21,7 @@ std::string List::toString(){
     Node *walker = head;
     std::string s = "";
     while (walker != nullptr){
-        s = s + std::to_string(walker->getData()) + "-->";
+        s = s + walker->getData()->get_name() + "-->";
         walker = walker->getNext();
     }
     s=s+"nullptr";

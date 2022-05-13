@@ -1,14 +1,15 @@
 #pragma once
+#include "Person.h"
 class Node{
     private:
-        int data;
+        Person *data;
         Node *next;
     public:
         Node();
-        Node(int data);
-        Node(int data, Node *next);
-        void setData(int data);
+        Node(Person *data);
+        Node(Person *data, Node *next);
+        void setData(Person *data);
         void setNext(Node *next);
-        int getData();
+        Person* getData();
         Node *getNext();
 };
