@@ -10,10 +10,10 @@ int main(){
     }catch(int e){
         std::cout<<"Not found\n";
     }
-    std::cout<<"Adding 1,2,3,8,42,56,7,8,9063426 to tree\n";
-    for (auto x: {1,2,3,8,42,56,7,8,9063426})
+    std::cout<<"Adding 1,2,3,8,42,56,7,8,9063426, -10, -30, -25, -2,-1 to tree\n";
+    for (auto x: {1,2,3,8,42,56,7,8,9063426, -10, -30, -25, -2,-1 })
         tree->insert(x);
-    for (auto x: {1,2,3,8,42,30,56,7,8,9063426,2000}){
+    for (auto x: {1,2,3,8,42,30,56,7,8,9063426,2000, -10, -30, -25, -2,-1}){
         std::cout<<"Searching for "<<x<<": ";
         try{
             std::cout<<tree->rsearch(x)<<"\n";
@@ -21,6 +21,7 @@ int main(){
             std::cout<<"Not found\n";
         }
     }
+    tree->pretty_printer();
     std::cout<<"Removing number 2: ";
     try{
         tree->remove(2);
