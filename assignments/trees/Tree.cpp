@@ -162,13 +162,19 @@ int Tree::height(Node* n){
     return r+1;
 }
 int Tree::sum_at_level(int level){//root is level 1
+    if (root==nullptr)
+        throw TREE_ERR_EMPTY;
+    if (height()<level || level<1)
+        throw TREE_ERR_NO_VALUE;
     return sum_at_level(level, root, 1);
 }
 int Tree::sum_at_level(int level, Node *n, int current){
-    if (current<level){
+    if (current<level && n!=nullptr){
         return sum_at_level(level, n->getLeft(), current+1) + sum_at_level(level, n->getRight(), current+1);
     }
     else{
+        if (n==nullptr)
+            return 0;
         return n->getData();
     }
 }
@@ -192,20 +198,20 @@ std::string Tree::pretty_printer(Node *n, int tabs, bool l){
         output+= pretty_printer(n->getRight(), tabs+1, false);
     return output;
 }
-bool Tree::cousins(Node *one, Node *two){
+bool Tree::cousins(int one, int two){
     if (level(one)==level(two))
         return true;
     return false;
 }
-int Tree::level(Node *value){
+int Tree::level(int value){
     return level(root, value, 1);
 }
-int Tree::level(Node *p, Node *value, int l){
+int Tree::level(Node *p, int value, int l){
     if (p==nullptr)
         throw TREE_ERR_NO_VALUE;
-    if (p==value)
+    if (p->getData()==value)
         return l;
-    else if(p->getData()>=value->getData())
+    else if(p->getData()>=value)
         return level(p->getLeft(),value,l+1);
     else
         return level(p->getRight(),value,l+1);

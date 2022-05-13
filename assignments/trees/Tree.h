@@ -23,7 +23,7 @@ class Tree{
 
         void pretty_printer();
         std::string pretty_printer(Node *n, int tabs,bool l);
-        bool cousins(Node *one, Node *two); 
-        int level(Node *n);
-        int level(Node *n, Node *value, int l);
+        bool cousins(int one, int two); 
+        int level(int n);
+        int level(Node *n, int value, int l);
 };
