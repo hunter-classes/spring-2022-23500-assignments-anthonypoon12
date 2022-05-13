@@ -146,6 +146,8 @@ int Tree::count_leaves(Node *n){
     return count_leaves(n->getLeft()) + count_leaves(n->getRight());
 }
 int Tree::height(){
+    if (root==nullptr)
+        return 0;
     return height(root);
 }
 int Tree::height(Node* n){
