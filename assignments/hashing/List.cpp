@@ -21,10 +21,9 @@ std::string List::toString(){
     Node *walker = head;
     std::string s = "";
     while (walker != nullptr){
-        s = s + walker->getData()->get_name() + "-->";
+        s = s + walker->getData()->get_name() + "; ";
         walker = walker->getNext();
     }
-    s=s+"nullptr";
     return s;
 }
 Node* List::locate(int index){
@@ -56,4 +55,13 @@ void List::remove(int index){
             delete target;
         }
     }
+}
+Person* List::findByName(std::string name){
+    Node* traveler = head;
+    while(traveler!=nullptr && traveler->getData()->get_name()!=name){
+        traveler=traveler->getNext();
+    }
+    if (traveler==nullptr)
+        return nullptr;
+    return traveler->getData();
 }

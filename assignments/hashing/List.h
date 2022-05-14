@@ -11,4 +11,5 @@ class List{
         std::string toString();
         Node* locate(int index);
         void remove(int index);
+        Person* findByName(std::string name);
 };
