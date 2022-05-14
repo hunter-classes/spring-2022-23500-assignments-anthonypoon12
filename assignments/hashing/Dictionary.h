@@ -7,6 +7,7 @@ class Dictionary{
         Dictionary();
         ~Dictionary();
         void insert(Person *person);
-        Person* retrieve(int id);
+        Person* retrieve(std::string name);
         std::string allKeys();
+        int hashfunc(std::string s, int m);
 };
