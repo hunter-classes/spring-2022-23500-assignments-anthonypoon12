@@ -16,8 +16,8 @@ Person* Dictionary::retrieve(std::string name){
 }
 std::string Dictionary::allKeys(){
     std::string output = "";
-    for (auto x: list){
-        output+=x->toString();
+    for (int x = 0; x < 10; x++){
+        output+="List " + std::to_string(x) + ": " + list[x]->toString() + "\n";
     }
     return output.substr(0,output.size()-2);
 }
