@@ -32,5 +32,10 @@ TEST_CASE("Retrieve"){
     CHECK(dictionary->retrieve("Man, IDK")==idkman);
     CHECK(dictionary->retrieve("IPut, WhatDo")==whatdoiput);
     CHECK(dictionary->retrieve("Name, ARandomfawdafeg")==arandomname);
+}
+TEST_CASE("allKeys"){
+    std::string teststring = "List 0: \nList 1: \nList 2: \nList 3: \nList 4: \nList 5: IPut, WhatDo| College, Hunter| Poon, Anthony| ";
+    teststring+="\nList 6: Name, ARandomfawdafeg| Man, IDK| \nList 7: \nList 8: \nList 9: School, Baruch|";
+    CHECK(dictionary->allKeys()==teststring);
     delete dictionary;
 }
