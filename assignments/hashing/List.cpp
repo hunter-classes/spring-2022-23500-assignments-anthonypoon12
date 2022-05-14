@@ -21,7 +21,7 @@ std::string List::toString(){
     Node *walker = head;
     std::string s = "";
     while (walker != nullptr){
-        s = s + walker->getData()->get_name() + "; ";
+        s = s + walker->getData()->get_name() + "| ";
         walker = walker->getNext();
     }
     return s;
