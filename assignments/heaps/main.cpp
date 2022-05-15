@@ -6,12 +6,17 @@ int main(){
     for (auto x: arr)
         std::cout<<x<<", ";
     std::cout<<"\n";
-    int arr2[] = {900,1,-4,-20,-100,-75,0,-5,25,7,-3,-13,250};
     heapify(arr, sizeof(arr)/sizeof(arr[0]));
     std::cout<<"Heapified Array 1: ";
     for (auto x: arr)
         std::cout<<x<<", ";
     std::cout<<"\n";
+    heapsort(arr, sizeof(arr)/sizeof(arr[0]));
+    std::cout<<"Heapsorted Array 1: ";
+    for (auto x: arr)
+        std::cout<<x<<", ";
+    std::cout<<"\n";
+    int arr2[] = {900,1,-4,-20,-100,-75,0,-5,25,7,-3,-13,250};
     std::cout<<"Initial Array 2: ";
     for (auto x: arr2)
         std::cout<<x<<", ";
@@ -21,5 +26,11 @@ int main(){
     for (auto x: arr2)
         std::cout<<x<<", ";
     std::cout<<"\n";
+    heapsort(arr2, sizeof(arr2)/sizeof(arr2[0]));
+    std::cout<<"Heapsorted Array 2: ";
+    for (auto x: arr2)
+        std::cout<<x<<", ";
+    std::cout<<"\n";
+    
     return 0;
 }
