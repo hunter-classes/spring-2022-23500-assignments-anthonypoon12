@@ -35,3 +35,15 @@ TEST_CASE("heapsort"){
     for (int i=0;i<size2;i++)
         CHECK(arr22[i]==sortedarr2[i]);
 }
+int arrempty[0];
+int arrone[1]={1};
+TEST_CASE("size zero and one"){
+    heapify(arrempty, 0);
+    heapsort(arrempty, 0);
+    heapify(arrone,1);
+    for (auto x: arrone)
+        CHECK(x==1);
+    heapsort(arrone, 1);
+    for (auto x: arrone)
+        CHECK(x==1);
+}
